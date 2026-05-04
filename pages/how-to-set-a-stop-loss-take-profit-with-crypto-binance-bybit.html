@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to Set a Stop Loss &amp; Take Profit with Crypto (Binance, Bybit) · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-184235-KST">Jarvis Wiki / trading</a><h1>How to Set a Stop Loss &amp; Take Profit with Crypto (Binance, Bybit)</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>How to Set a Stop Loss &amp; Take Profit with Crypto (Binance, Bybit)</h1>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to Set a Stop Loss &amp; Take Profit with Crypto (Binance, Bybit) · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-203312-KST">Jarvis Wiki / trading</a><h1>How to Set a Stop Loss &amp; Take Profit with Crypto (Binance, Bybit)</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>How to Set a Stop Loss &amp; Take Profit with Crypto (Binance, Bybit)</h1>
 <blockquote>Source candidate from <code>News-Links/2026-03-05 How to Set a Stop Loss &amp; Take Profit (Binance, Bybit)/README.md</code></blockquote>
 <h2>Source Content</h2>
 <h1>How to Set a Stop Loss &amp; Take Profit with Crypto (Binance, Bybit)</h1>
@@ -12,28 +12,32 @@
 <li>스팟 시장에서 TP와 SL을 동시에 걸 수 없는 이유</li>
 </ul>
 <h2>🗂️ 아웃라인</h2>
-<p>1. **TP/SL의 본질** — 둘 다 동일한 매도 주문, 가격이 익절/손절을 결정</p>
-<p>2. **조건부 주문 설정** (Bybit 기준) — 트리거 가격 + 주문 유형 선택</p>
-<p>3. **리밋 vs 시장가** — SL에는 시장가 또는 트리거보다 낮은 리밋 권장</p>
-<p>4. **SL 위치 전략 3가지**</p>
-<p>   - 퍼센트법</p>
-<p>   - ATR (Average True Range)법</p>
-<p>   - 지지/저항선법</p>
-<p>5. **트레일링 스탑** — 활성화 가격 + 콜백 비율</p>
-<p>6. **스팟 시장 주의사항** — TP+SL 동시 설정 불가 이유</p>
+<ol>
+<li><strong>TP/SL의 본질</strong> — 둘 다 동일한 매도 주문, 가격이 익절/손절을 결정</li>
+<li><strong>조건부 주문 설정</strong> (Bybit 기준) — 트리거 가격 + 주문 유형 선택</li>
+<li><strong>리밋 vs 시장가</strong> — SL에는 시장가 또는 트리거보다 낮은 리밋 권장</li>
+<li><strong>SL 위치 전략 3가지</strong></li>
+<ul>
+<li>퍼센트법</li>
+<li>ATR (Average True Range)법</li>
+<li>지지/저항선법</li>
+</ul>
+<li><strong>트레일링 스탑</strong> — 활성화 가격 + 콜백 비율</li>
+<li><strong>스팟 시장 주의사항</strong> — TP+SL 동시 설정 불가 이유</li>
+</ol>
 <h2>💡 키포인트</h2>
 <h3>조건부 주문 개념</h3>
 <ul>
-<li>**리밋 주문 ≠ 스탑 주문**: 리밋 매도는 현재가 이하 즉시 체결 → SL 용도 불가</li>
-<li>**조건부 주문**: &quot;가격이 X에 도달하면 그때 주문 실행&quot; (if→then 구조)</li>
+<li><strong>리밋 주문 ≠ 스탑 주문</strong>: 리밋 매도는 현재가 이하 즉시 체결 → SL 용도 불가</li>
+<li><strong>조건부 주문</strong>: &quot;가격이 X에 도달하면 그때 주문 실행&quot; (if→then 구조)</li>
 <li>스팟 익절은 리밋 주문만으로도 가능 (현재가 위 리밋 매도)</li>
 </ul>
 <h3>SL 위치 선정 3가지 전략</h3>
-<p>| 방법 | 설명 | 장점 | 단점 |</p>
-<p>|------|------|------|------|</p>
-<p>| **퍼센트법** | 진입가 기준 -10% 등 단순 % 설정 | 계산 간단 | 시장 맥락 무시 |</p>
-<p>| **ATR법** | 일평균 변동폭(ATR) 기준 여유분 추가 | 현재 변동성 반영 | 지표 필요 |</p>
-<p>| **지지/저항선법** | 주요 S/R 레벨 아래에 SL 배치 | 시장 구조 기반 | 분석 필요 |</p>
+<table><thead><tr><th>방법</th><th>설명</th><th>장점</th><th>단점</th></tr></thead><tbody>
+<tr><td><strong>퍼센트법</strong></td><td>진입가 기준 -10% 등 단순 % 설정</td><td>계산 간단</td><td>시장 맥락 무시</td></tr>
+<tr><td><strong>ATR법</strong></td><td>일평균 변동폭(ATR) 기준 여유분 추가</td><td>현재 변동성 반영</td><td>지표 필요</td></tr>
+<tr><td><strong>지지/저항선법</strong></td><td>주요 S/R 레벨 아래에 SL 배치</td><td>시장 구조 기반</td><td>분석 필요</td></tr>
+</tbody></table>
 <h3>ATR 활용 예시</h3>
 <ul>
 <li>BTC ATR ≈ $600/일 → 진입가 $20,000 기준 SL = $19,000 ($1,000 여유)</li>
@@ -41,20 +45,20 @@
 </ul>
 <h3>트레일링 스탑</h3>
 <ul>
-<li>**콜백 비율**: 현재가에서 몇 % 아래에 매도 주문 유지</li>
+<li><strong>콜백 비율</strong>: 현재가에서 몇 % 아래에 매도 주문 유지</li>
 <li>가격 상승 시 → 트레일링 스탑도 같은 % 따라 올라감</li>
 <li>가격 하락 시 → 스탑 고정, 해당 가격 도달 시 즉시 청산</li>
-<li>**활성화 가격**: 현재가보다 높게 설정해야 롱 익절용으로 작동</li>
+<li><strong>활성화 가격</strong>: 현재가보다 높게 설정해야 롱 익절용으로 작동</li>
 </ul>
 <h3>⚠️ 스팟 시장 TP+SL 동시 설정 불가</h3>
 <ul>
 <li>스팟은 실물 자산 정산 → SL 주문에 자산이 묶임</li>
 <li>자산이 묶인 상태에서 TP 주문 추가 불가 (이중 약정)</li>
-<li>**해결책**: 선물 마켓 사용 또는 TP/SL 중 하나만 설정</li>
+<li><strong>해결책</strong>: 선물 마켓 사용 또는 TP/SL 중 하나만 설정</li>
 </ul>
 <h2>📝 전사본 (핵심 발췌)</h2>
 <blockquote>&quot;We don&#x27;t want to use a limit order for a stop loss. It&#x27;s not going to work because if we tell the system using a limit order, sell BTC with a limit of 96 and the price is trading at 98, it is going to immediately sell.&quot;</blockquote>
 <blockquote>&quot;If the price moves up again... this trailing stop will move up the exact same amount. It will always be 2% away on the upside. As soon as the price starts moving back down again, this trailing stop order will not move down.&quot;</blockquote>
 <blockquote>&quot;If you put a stop loss order in at 96... you now have an IOU for that order because this is taking your actual assets right here and tying them up into a sell order.&quot;</blockquote>
-<p>---</p>
-<p>*채널: #threads-web-link | 저장: 자비스*</p><section class="sourcebox"><h2>Source Trace</h2><ul><li><code>News-Links/2026-03-05 How to Set a Stop Loss &amp; Take Profit (Binance, Bybit)/README.md</code></li></ul></section><div class="footer">Generated from Obsidian Wikis/trading. Raw markdown files are not included in this repository; their reviewed body content is rendered into these public wiki pages.</div></main></body></html>
+<hr>
+<p><em>채널: #threads-web-link | 저장: 자비스</em></p><section class="sourcebox"><h2>Source Trace</h2><ul><li><code>News-Links/2026-03-05 How to Set a Stop Loss &amp; Take Profit (Binance, Bybit)/README.md</code></li></ul></section><div class="footer">Generated from Obsidian Wikis/trading. Raw markdown files are not included in this repository; their reviewed body content is rendered into these public wiki pages.</div></main></body></html>

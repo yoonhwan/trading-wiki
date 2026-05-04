@@ -1,34 +1,36 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S&amp;P500 커버드콜 옵션 매도 전략 — @jkimmorgan · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-184235-KST">Jarvis Wiki / trading</a><h1>S&amp;P500 커버드콜 옵션 매도 전략 — @jkimmorgan</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>S&amp;P500 커버드콜 옵션 매도 전략 — @jkimmorgan</h1>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S&amp;P500 커버드콜 옵션 매도 전략 — @jkimmorgan · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-203312-KST">Jarvis Wiki / trading</a><h1>S&amp;P500 커버드콜 옵션 매도 전략 — @jkimmorgan</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>S&amp;P500 커버드콜 옵션 매도 전략 — @jkimmorgan</h1>
 <blockquote>Source candidate from <code>News-Links/2026-03-13 S&amp;P500 커버드콜 옵션 매도 전략 - jkimmorgan/README.md</code></blockquote>
 <h2>Source Content</h2>
 <h1>S&amp;P500 커버드콜 옵션 매도 전략 — @jkimmorgan</h1>
 <blockquote>원본: <a href="https://www.threads.com/@jkimmorgan/post/DVyqJAJkzQH">https://www.threads.com/@jkimmorgan/post/DVyqJAJkzQH</a></blockquote>
 <h2>핵심 전략 (5단계 루프)</h2>
-<p>1. **S&amp;P500 주식을 100주까지 모아라** — 옵션 1계약 = 100주 단위</p>
-<p>2. **옵션을 팔아라** — 커버드콜(Covered Call) 매도</p>
-<p>3. **하락장에서 옵션 팔아 헤징을 한다** — 프리미엄 수취로 하락 방어</p>
-<p>4. **옵션 팔아 생긴 캐시플로우로 주식을 산다** — 복리 효과</p>
-<p>5. **반복** — 무한 루프</p>
+<ol>
+<li><strong>S&amp;P500 주식을 100주까지 모아라</strong> — 옵션 1계약 = 100주 단위</li>
+<li><strong>옵션을 팔아라</strong> — 커버드콜(Covered Call) 매도</li>
+<li><strong>하락장에서 옵션 팔아 헤징을 한다</strong> — 프리미엄 수취로 하락 방어</li>
+<li><strong>옵션 팔아 생긴 캐시플로우로 주식을 산다</strong> — 복리 효과</li>
+<li><strong>반복</strong> — 무한 루프</li>
+</ol>
 <blockquote>&quot;옵션은 자본주의의 꽃입니다&quot; — @jkimmorgan</blockquote>
 <h2>첨부 이미지: 실제 옵션 매도 포지션</h2>
-<p>| 종목 | 행사가 | 만기 | 매도 횟수 | 수익률 |</p>
-<p>|------|--------|------|----------|--------|</p>
-<p>| AMD | $230 Call | 3/20 | 2 Sells | +73.09% |</p>
-<p>| AVGO | $380 Call | 3/20 | 1 Sell | +65.16% |</p>
-<p>| AVGO | $365 Call | 3/20 | 1 Sell | +56.80% |</p>
-<p>| GOOGL | $330 Call | 3/20 | 2 Sells | +68.18% |</p>
-<p>| GOOGL | $322.5 Call | 3/20 | 3 Sells | +39.19% |</p>
-<p>| JPM | $300 Call | 3/20 | 1 Sell | +71.24% |</p>
-<p>| NVDA | $205 Call | 3/20 | 7 Sells | +69.01% |</p>
-<p>| ORCL | $185 Call | 3/20 | 1 Sell | +63.20% |</p>
-<p>→ 전 종목 **+39~73%** 수익률 기록 (옵션 프리미엄 기준)</p>
+<table><thead><tr><th>종목</th><th>행사가</th><th>만기</th><th>매도 횟수</th><th>수익률</th></tr></thead><tbody>
+<tr><td>AMD</td><td>$230 Call</td><td>3/20</td><td>2 Sells</td><td>+73.09%</td></tr>
+<tr><td>AVGO</td><td>$380 Call</td><td>3/20</td><td>1 Sell</td><td>+65.16%</td></tr>
+<tr><td>AVGO</td><td>$365 Call</td><td>3/20</td><td>1 Sell</td><td>+56.80%</td></tr>
+<tr><td>GOOGL</td><td>$330 Call</td><td>3/20</td><td>2 Sells</td><td>+68.18%</td></tr>
+<tr><td>GOOGL</td><td>$322.5 Call</td><td>3/20</td><td>3 Sells</td><td>+39.19%</td></tr>
+<tr><td>JPM</td><td>$300 Call</td><td>3/20</td><td>1 Sell</td><td>+71.24%</td></tr>
+<tr><td>NVDA</td><td>$205 Call</td><td>3/20</td><td>7 Sells</td><td>+69.01%</td></tr>
+<tr><td>ORCL</td><td>$185 Call</td><td>3/20</td><td>1 Sell</td><td>+63.20%</td></tr>
+</tbody></table>
+<p>→ 전 종목 <strong>+39~73%</strong> 수익률 기록 (옵션 프리미엄 기준)</p>
 <h2>전략 해설</h2>
 <h3>커버드콜(Covered Call)이란?</h3>
 <ul>
 <li>보유 주식 100주 당 콜옵션 1계약 매도</li>
-<li>**주가 횡보/소폭 상승 시** → 옵션 프리미엄 수취 (순이익)</li>
-<li>**주가 급등 시** → 행사가 이상 이익 포기 (기회비용)</li>
-<li>**주가 하락 시** → 프리미엄만큼 손실 완충</li>
+<li><strong>주가 횡보/소폭 상승 시</strong> → 옵션 프리미엄 수취 (순이익)</li>
+<li><strong>주가 급등 시</strong> → 행사가 이상 이익 포기 (기회비용)</li>
+<li><strong>주가 하락 시</strong> → 프리미엄만큼 손실 완충</li>
 </ul>
 <h3>왜 S&amp;P500 대형주인가?</h3>
 <ul>
@@ -38,9 +40,9 @@
 </ul>
 <h3>핵심 포인트</h3>
 <ul>
-<li>**100주 모으기가 핵심 진입 장벽** — NVDA 100주 ≈ $20,500, AVGO 100주 ≈ $38,000</li>
-<li>**주간/월간 만기 옵션** 매도로 꾸준한 캐시플로우 생성</li>
-<li>**하락장에서도 수익** — 옵션 프리미엄이 하락분 일부 상쇄</li>
+<li><strong>100주 모으기가 핵심 진입 장벽</strong> — NVDA 100주 ≈ $20,500, AVGO 100주 ≈ $38,000</li>
+<li><strong>주간/월간 만기 옵션</strong> 매도로 꾸준한 캐시플로우 생성</li>
+<li><strong>하락장에서도 수익</strong> — 옵션 프리미엄이 하락분 일부 상쇄</li>
 </ul>
 <h2>반응</h2>
 <ul>

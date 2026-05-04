@@ -1,14 +1,14 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>🚀 News-Links Q&amp;A Bot 만들기 — LangGraph 초급 가이드 · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-184235-KST">Jarvis Wiki / trading</a><h1>🚀 News-Links Q&amp;A Bot 만들기 — LangGraph 초급 가이드</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>🚀 News-Links Q&amp;A Bot 만들기 — LangGraph 초급 가이드</h1>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>🚀 News-Links Q&amp;A Bot 만들기 — LangGraph 초급 가이드 · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-203312-KST">Jarvis Wiki / trading</a><h1>🚀 News-Links Q&amp;A Bot 만들기 — LangGraph 초급 가이드</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>🚀 News-Links Q&amp;A Bot 만들기 — LangGraph 초급 가이드</h1>
 <blockquote>Source candidate from <code>News-Links/2026-02-16 News-Links QA Bot 만들기 - LangGraph 초급 가이드.md</code></blockquote>
 <h2>Source Content</h2>
 <h1>🚀 News-Links Q&amp;A Bot 만들기 — LangGraph 초급 가이드</h1>
-<p>**작성일**: 2026-02-16</p>
-<p>**카테고리**: #LangGraph #RAG #Tutorial #LangChain #AgentSkills</p>
-<p>**프로젝트 경로**: <code>~/Work/news-links-bot/</code></p>
-<p>---</p>
+<p><strong>작성일</strong>: 2026-02-16</p>
+<p><strong>카테고리</strong>: #LangGraph #RAG #Tutorial #LangChain #AgentSkills</p>
+<p><strong>프로젝트 경로</strong>: <code>~/Work/news-links-bot/</code></p>
+<hr>
 <h2>📌 개요</h2>
 <p>Obsidian <code>News-Links/</code> 폴더의 마크다운 문서들을 벡터 검색 + LLM으로 질의응답하는 RAG 챗봇을 만든다.</p>
-<p>**핵심 규칙**: 코드는 직접 쓰지 않는다. **Agent Skills가 가이드하고, 스킬이 제안하는 패턴을 보고 구현**한다.</p>
+<p><strong>핵심 규칙</strong>: 코드는 직접 쓰지 않는다. <strong>Agent Skills가 가이드하고, 스킬이 제안하는 패턴을 보고 구현</strong>한다.</p>
 <h3>완성 아키텍처</h3>
 <pre><code>사용자 질문
     ↓
@@ -30,13 +30,13 @@
  스킬        직접구현      스킬        스킬+구현     스킬        스킬
 project     indexer     state       graph      error     testing
 -setup                  -mgmt                  -handling -evaluation</code></pre>
-<p>---</p>
+<hr>
 <h2>🛠️ 사전 준비</h2>
 <pre><code># Python 3.11+ 확인
 python3 --version
 
 # OpenAI API 키 필요: https://platform.openai.com/api-keys</code></pre>
-<p>---</p>
+<hr>
 <h2>📦 Phase 1: 프로젝트 초기화</h2>
 <h3>🎯 스킬 호출</h3>
 <p>Claude Code에서 다음과 같이 요청한다:</p>
@@ -46,26 +46,26 @@ python3 --version
 <blockquote>RAG 패턴으로 로컬 마크다운 파일을 검색하는 Q&amp;A 봇이야.</blockquote>
 <blockquote>필요한 패키지: langchain, langgraph, langchain-community, langchain-openai, chromadb, python-dotenv&quot;</blockquote>
 <h3>스킬이 해주는 것</h3>
-<p>| 항목 | 설명 |</p>
-<p>|------|------|</p>
-<p>| 폴더 구조 | <code>src/</code>, <code>tests/</code>, <code>data/</code> 디렉토리 생성 |</p>
-<p>| <code>langgraph.json</code> | 그래프 엔트리포인트 설정 |</p>
-<p>| <code>.env</code> | API 키 템플릿 |</p>
-<p>| <code>requirements.txt</code> | 의존성 목록 |</p>
-<p>| 가상환경 | <code>.venv</code> 생성 + 활성화 |</p>
+<table><thead><tr><th>항목</th><th>설명</th></tr></thead><tbody>
+<tr><td>폴더 구조</td><td><code>src/</code>, <code>tests/</code>, <code>data/</code> 디렉토리 생성</td></tr>
+<tr><td><code>langgraph.json</code></td><td>그래프 엔트리포인트 설정</td></tr>
+<tr><td><code>.env</code></td><td>API 키 템플릿</td></tr>
+<tr><td><code>requirements.txt</code></td><td>의존성 목록</td></tr>
+<tr><td>가상환경</td><td><code>.venv</code> 생성 + 활성화</td></tr>
+</tbody></table>
 <h3>내가 추가로 알려줘야 할 컨텍스트</h3>
-<p>스킬은 **프로젝트 구조만** 알려준다. <code>.env</code>에 VAULT 경로를 직접 추가해야 한다:</p>
+<p>스킬은 <strong>프로젝트 구조만</strong> 알려준다. <code>.env</code>에 VAULT 경로를 직접 추가해야 한다:</p>
 <pre><code>VAULT_PATH=/Users/yoonhwan/Library/Mobile Documents/iCloud~md~obsidian/Documents/jarvis-vault</code></pre>
 <h3>✅ 체크포인트</h3>
 <ul>
 <li>[ ] <code>~/Work/news-links-bot/</code> 폴더 생성됨</li>
 <li>[ ] <code>langgraph.json</code> 존재</li>
 <li>[ ] <code>.venv</code> 활성화 + 패키지 설치 완료</li>
-<li>[ ] <code>.env</code>에 <code>OPENAI_API_KEY</code> + <code>VAULT_PATH</code> 입력 완료</li>
+<li>[ ] <code>.env</code>에 <code>OPENAI<em>API</em>KEY</code> + <code>VAULT_PATH</code> 입력 완료</li>
 </ul>
-<p>---</p>
+<hr>
 <h2>📄 Phase 2: 문서 로더 구현</h2>
-<blockquote>⚠️ **스킬 없음** — 이 부분은 프로젝트 고유 로직이라 직접 구현한다.</blockquote>
+<blockquote>⚠️ <strong>스킬 없음</strong> — 이 부분은 프로젝트 고유 로직이라 직접 구현한다.</blockquote>
 <p>Claude Code에서 이렇게 요청한다:</p>
 <blockquote>&quot;src/indexer.py를 만들어줘. 다음 요구사항:</blockquote>
 <blockquote>1. <code>VAULT_PATH/News-Links/</code> 폴더의 모든 .md 파일을 재귀적으로 로드</blockquote>
@@ -74,42 +74,42 @@ python3 --version
 <blockquote>4. separators는 마크다운 구조 우선: <code>[&quot;\n## &quot;, &quot;\n### &quot;, &quot;\n---\n&quot;, &quot;\n\n&quot;, &quot;\n&quot;]</code></blockquote>
 <blockquote>5. ChromaDB에 OpenAI text-embedding-3-small로 벡터 저장</blockquote>
 <blockquote>6. <code>get_vectorstore()</code> — 기존 DB 있으면 로드, 없으면 새로 생성</blockquote>
-<blockquote>7. <code>__main__</code>으로 직접 실행 가능하게&quot;</blockquote>
+<blockquote>7. <code><strong>main</strong></code>으로 직접 실행 가능하게&quot;</blockquote>
 <h3>News-Links 데이터 특성 (참고)</h3>
-<p>| 항목 | 값 |</p>
-<p>|------|-----|</p>
-<p>| 파일 수 | 20개 |</p>
-<p>| 파일 크기 | 1.4KB ~ 16KB |</p>
-<p>| 언어 | 한국어 위주 |</p>
-<p>| 구조 | 이모지 헤더, 테이블, 코드 블록, 해시태그 |</p>
-<p>| 주제 | AI 기술, 투자 분석, 개발 가이드 |</p>
+<table><thead><tr><th>항목</th><th>값</th></tr></thead><tbody>
+<tr><td>파일 수</td><td>20개</td></tr>
+<tr><td>파일 크기</td><td>1.4KB ~ 16KB</td></tr>
+<tr><td>언어</td><td>한국어 위주</td></tr>
+<tr><td>구조</td><td>이모지 헤더, 테이블, 코드 블록, 해시태그</td></tr>
+<tr><td>주제</td><td>AI 기술, 투자 분석, 개발 가이드</td></tr>
+</tbody></table>
 <h3>✅ 체크포인트</h3>
 <ul>
 <li>[ ] <code>python -m src.indexer</code> 실행 성공</li>
 <li>[ ] &quot;로드 완료: N개 문서&quot; + &quot;청크 분할: N개&quot; 출력</li>
 <li>[ ] <code>data/chroma/</code> 디렉토리에 벡터 DB 생성됨</li>
 </ul>
-<p>---</p>
+<hr>
 <h2>🧩 Phase 3: State 설계</h2>
 <h3>🎯 스킬 호출</h3>
 <pre><code>/langgraph-state-management</code></pre>
 <p>스킬이 로드되면 이렇게 말한다:</p>
 <blockquote>&quot;RAG Q&amp;A 봇의 State를 설계해줘. 추적해야 할 데이터:</blockquote>
-<blockquote>1. **대화 히스토리** — 멀티턴 대화 지원 (누적)</blockquote>
-<blockquote>2. **검색된 문서 내용** — 현재 턴의 검색 결과 (매번 덮어쓰기)</blockquote>
-<blockquote>3. **출처 파일명** — 답변에 사용된 소스 표시용 (매번 덮어쓰기)</blockquote>
-<blockquote>4. **관련성 점수** — 검색 결과 품질 판단 기준, 0.0~1.0 (매번 덮어쓰기)</blockquote>
+<blockquote>1. <strong>대화 히스토리</strong> — 멀티턴 대화 지원 (누적)</blockquote>
+<blockquote>2. <strong>검색된 문서 내용</strong> — 현재 턴의 검색 결과 (매번 덮어쓰기)</blockquote>
+<blockquote>3. <strong>출처 파일명</strong> — 답변에 사용된 소스 표시용 (매번 덮어쓰기)</blockquote>
+<blockquote>4. <strong>관련성 점수</strong> — 검색 결과 품질 판단 기준, 0.0~1.0 (매번 덮어쓰기)</blockquote>
 <blockquote></blockquote>
 <blockquote>TypedDict 기반으로, 대화 히스토리는 add_messages 리듀서를 써줘.&quot;</blockquote>
 <h3>스킬에서 배울 내용</h3>
-<p>| 개념 | 배우는 것 |</p>
-<p>|------|-----------|</p>
-<p>| <code>TypedDict</code> | LangGraph State 정의 방법 |</p>
-<p>| <code>Annotated[list, add_messages]</code> | 리듀서로 메시지 자동 누적 |</p>
-<p>| 덮어쓰기 vs 누적 | 필드별 업데이트 전략 차이 |</p>
-<p>| <code>MessagesValue</code> | 대안 패턴 비교 |</p>
+<table><thead><tr><th>개념</th><th>배우는 것</th></tr></thead><tbody>
+<tr><td><code>TypedDict</code></td><td>LangGraph State 정의 방법</td></tr>
+<tr><td><code>Annotated[list, add_messages]</code></td><td>리듀서로 메시지 자동 누적</td></tr>
+<tr><td>덮어쓰기 vs 누적</td><td>필드별 업데이트 전략 차이</td></tr>
+<tr><td><code>MessagesValue</code></td><td>대안 패턴 비교</td></tr>
+</tbody></table>
 <h3>스킬이 알려주지 않는 것</h3>
-<p>스킬은 **패턴**을 제안한다. 우리 프로젝트에 맞는 **필드 이름과 타입**은 내가 결정:</p>
+<p>스킬은 <strong>패턴</strong>을 제안한다. 우리 프로젝트에 맞는 <strong>필드 이름과 타입</strong>은 내가 결정:</p>
 <ul>
 <li><code>context: list[str]</code> — 검색된 청크 텍스트</li>
 <li><code>source_files: list[str]</code> — 출처 파일명</li>
@@ -121,28 +121,28 @@ python3 --version
 <li>[ ] <code>GraphState</code> TypedDict에 4개 필드 정의</li>
 <li>[ ] <code>messages</code> 필드에 <code>add_messages</code> 리듀서 적용</li>
 </ul>
-<p>---</p>
+<hr>
 <h2>🔗 Phase 4: 그래프 구현</h2>
 <h3>🎯 스킬 활용 (간접)</h3>
 <p>Phase 3에서 State 스킬이 알려준 패턴을 바탕으로 그래프를 구성한다.</p>
 <p>Claude Code에서 이렇게 요청한다:</p>
 <blockquote>&quot;src/graph.py를 만들어줘. 다음 설계:</blockquote>
 <blockquote></blockquote>
-<blockquote>**노드 3개:**</blockquote>
-<blockquote>- <code>retrieve</code> — vectorstore.as_retriever(k=4)로 검색, context와 source_files 반환</blockquote>
+<blockquote><strong>노드 3개:</strong></blockquote>
+<blockquote>- <code>retrieve</code> — vectorstore.as<em>retriever(k=4)로 검색, context와 source</em>files 반환</blockquote>
 <blockquote>- <code>grade</code> — 각 문서의 관련성을 LLM으로 yes/no 판단, confidence_score 계산</blockquote>
 <blockquote>- <code>generate</code> — context 기반 LLM 답변 생성, 출처 파일명 포함</blockquote>
 <blockquote></blockquote>
-<blockquote>**조건부 엣지:**</blockquote>
+<blockquote><strong>조건부 엣지:</strong></blockquote>
 <blockquote>- grade 후 confidence_score &gt;= 0.5 → generate</blockquote>
-<blockquote>- grade 후 confidence_score &lt; 0.5 → regenerate_query → retrieve (재검색)</blockquote>
+<blockquote>- grade 후 confidence<em>score &lt; 0.5 → regenerate</em>query → retrieve (재검색)</blockquote>
 <blockquote></blockquote>
-<blockquote>**추가 노드:**</blockquote>
+<blockquote><strong>추가 노드:</strong></blockquote>
 <blockquote>- <code>regenerate_query</code> — 원래 질문을 LLM으로 재구성</blockquote>
 <blockquote></blockquote>
-<blockquote>**모델:** ChatOpenAI(model=&quot;gpt-4o-mini&quot;, temperature=0)</blockquote>
-<blockquote>**State:** src/state.py의 GraphState 사용</blockquote>
-<blockquote>**벡터스토어:** src/indexer.py의 get_vectorstore() 사용&quot;</blockquote>
+<blockquote><strong>모델:</strong> ChatOpenAI(model=&quot;gpt-4o-mini&quot;, temperature=0)</blockquote>
+<blockquote><strong>State:</strong> src/state.py의 GraphState 사용</blockquote>
+<blockquote><strong>벡터스토어:</strong> src/indexer.py의 get_vectorstore() 사용&quot;</blockquote>
 <h3>그래프 흐름도</h3>
 <pre><code>START → retrieve → grade ──YES──→ generate → END
                      │
@@ -158,67 +158,67 @@ python3 --version
 <li>[ ] 조건부 엣지 설정 (grade → generate or regenerate_query)</li>
 <li>[ ] <code>graph = workflow.compile()</code> 성공</li>
 </ul>
-<p>---</p>
+<hr>
 <h2>🛡️ Phase 5: 에러 핸들링</h2>
 <h3>🎯 스킬 호출</h3>
 <pre><code>/langgraph-error-handling</code></pre>
 <p>스킬이 로드되면 이렇게 말한다:</p>
 <blockquote>&quot;Phase 4에서 만든 src/graph.py에 에러 핸들링을 추가해줘.</blockquote>
 <blockquote></blockquote>
-<blockquote>**처리해야 할 에러 시나리오:**</blockquote>
+<blockquote><strong>처리해야 할 에러 시나리오:</strong></blockquote>
 <blockquote>1. OpenAI API 일시적 장애 (rate limit, timeout) → 재시도</blockquote>
 <blockquote>2. 검색 결과 빈 배열 → 폴백 메시지</blockquote>
 <blockquote>3. 벡터 스토어 미존재 → 자동 생성 (이미 indexer에 구현됨)</blockquote>
 <blockquote></blockquote>
-<blockquote>**요청:**</blockquote>
+<blockquote><strong>요청:</strong></blockquote>
 <blockquote>- grade, generate, regenerate_query 노드에 RetryPolicy 적용 (3회, 지수 백오프)</blockquote>
 <blockquote>- generate에 context 비었을 때 친절한 폴백 메시지 추가&quot;</blockquote>
 <h3>스킬에서 배울 내용</h3>
-<p>| 개념 | 배우는 것 |</p>
-<p>|------|-----------|</p>
-<p>| 에러 분류 | Transient vs Recoverable vs User-fixable |</p>
-<p>| <code>RetryPolicy</code> | <code>max_attempts</code>, <code>backoff_factor</code> 설정법 |</p>
-<p>| 폴백 패턴 | 그래프 내에서 우아한 실패 처리 |</p>
-<p>| Human-in-the-loop | <code>interrupt()/resume()</code> (이번엔 맛보기만) |</p>
+<table><thead><tr><th>개념</th><th>배우는 것</th></tr></thead><tbody>
+<tr><td>에러 분류</td><td>Transient vs Recoverable vs User-fixable</td></tr>
+<tr><td><code>RetryPolicy</code></td><td><code>max<em>attempts</code>, <code>backoff</em>factor</code> 설정법</td></tr>
+<tr><td>폴백 패턴</td><td>그래프 내에서 우아한 실패 처리</td></tr>
+<tr><td>Human-in-the-loop</td><td><code>interrupt()/resume()</code> (이번엔 맛보기만)</td></tr>
+</tbody></table>
 <h3>✅ 체크포인트</h3>
 <ul>
 <li>[ ] LLM 호출 노드에 RetryPolicy 적용됨</li>
 <li>[ ] generate에 빈 context 폴백 메시지 존재</li>
 <li>[ ] 에러 시나리오별 처리 전략 이해함</li>
 </ul>
-<p>---</p>
+<hr>
 <h2>🧪 Phase 6: 테스트</h2>
 <h3>🎯 스킬 호출</h3>
 <pre><code>/langgraph-testing-evaluation</code></pre>
 <p>스킬이 로드되면 이렇게 말한다:</p>
 <blockquote>&quot;src/graph.py의 News-Links Q&amp;A 그래프에 대한 테스트를 작성해줘.</blockquote>
 <blockquote></blockquote>
-<blockquote>**단위 테스트 (노드별):**</blockquote>
+<blockquote><strong>단위 테스트 (노드별):</strong></blockquote>
 <blockquote>- retrieve: 질문 입력 시 context와 source_files 반환 확인</blockquote>
 <blockquote>- grade: context가 있을 때 0.0~1.0 범위 confidence_score 반환 확인</blockquote>
 <blockquote>- generate: context 비었을 때 폴백 메시지 확인 / context 있을 때 답변 생성 확인</blockquote>
 <blockquote></blockquote>
-<blockquote>**통합 테스트 (전체 그래프):**</blockquote>
+<blockquote><strong>통합 테스트 (전체 그래프):</strong></blockquote>
 <blockquote>- 질문 입력 → 답변 출력 end-to-end 검증</blockquote>
 <blockquote></blockquote>
-<blockquote>**테스트 데이터:**</blockquote>
+<blockquote><strong>테스트 데이터:</strong></blockquote>
 <blockquote>- 실제 News-Links 문서 기반 질문 사용 (예: &#x27;Mistral Voxtral이 뭐야?&#x27;)</blockquote>
 <blockquote></blockquote>
-<blockquote>**추가:**</blockquote>
+<blockquote><strong>추가:</strong></blockquote>
 <blockquote>- src/cli.py로 대화형 CLI 인터페이스도 만들어줘 (while 루프, quit으로 종료)&quot;</blockquote>
 <h3>스킬에서 배울 내용</h3>
-<p>| 개념 | 배우는 것 |</p>
-<p>|------|-----------|</p>
-<p>| 노드 단위 테스트 | 개별 함수를 State 넣고 직접 호출 |</p>
-<p>| 그래프 통합 테스트 | <code>graph.invoke()</code>로 전체 흐름 검증 |</p>
-<p>| fixture 설계 | 테스트용 초기 State 구성 |</p>
-<p>| 트라젝토리 평가 | 워크플로우 경로 추적 (맛보기) |</p>
+<table><thead><tr><th>개념</th><th>배우는 것</th></tr></thead><tbody>
+<tr><td>노드 단위 테스트</td><td>개별 함수를 State 넣고 직접 호출</td></tr>
+<tr><td>그래프 통합 테스트</td><td><code>graph.invoke()</code>로 전체 흐름 검증</td></tr>
+<tr><td>fixture 설계</td><td>테스트용 초기 State 구성</td></tr>
+<tr><td>트라젝토리 평가</td><td>워크플로우 경로 추적 (맛보기)</td></tr>
+</tbody></table>
 <h3>✅ 체크포인트</h3>
 <ul>
 <li>[ ] <code>pytest tests/ -v</code> 전체 통과</li>
 <li>[ ] <code>python -m src.cli</code>로 대화형 Q&amp;A 작동 확인</li>
 </ul>
-<p>---</p>
+<hr>
 <h2>▶️ 실행 순서 요약</h2>
 <pre><code># 1. 프로젝트 폴더로 이동
 cd ~/Work/news-links-bot
@@ -233,30 +233,30 @@ pytest tests/ -v
 # 4. CLI 챗봇 실행
 python -m src.cli</code></pre>
 <h3>시도해볼 질문들</h3>
-<p>| 질문 | 기대 출처 |</p>
-<p>|------|-----------|</p>
-<p>| &quot;Mistral Voxtral이 뭐야?&quot; | 2026-02-08 Mistral Voxtral 음성 모델.md |</p>
-<p>| &quot;Progressive Disclosure 패턴 설명해줘&quot; | 2026-02-16 LangChain Agent Skills...md |</p>
-<p>| &quot;투자 전략 관련 글 요약해줘&quot; | 유퀴즈 박현주...md |</p>
-<p>| &quot;MCP 서버로 뭘 할 수 있어?&quot; | MCP 서버로 금은비트코인...md |</p>
-<p>| &quot;Claude Code 스킬 만드는 법&quot; | Anthropic Claude Skill 제작 가이드...md |</p>
-<p>---</p>
+<table><thead><tr><th>질문</th><th>기대 출처</th></tr></thead><tbody>
+<tr><td>&quot;Mistral Voxtral이 뭐야?&quot;</td><td>2026-02-08 Mistral Voxtral 음성 모델.md</td></tr>
+<tr><td>&quot;Progressive Disclosure 패턴 설명해줘&quot;</td><td>2026-02-16 LangChain Agent Skills...md</td></tr>
+<tr><td>&quot;투자 전략 관련 글 요약해줘&quot;</td><td>유퀴즈 박현주...md</td></tr>
+<tr><td>&quot;MCP 서버로 뭘 할 수 있어?&quot;</td><td>MCP 서버로 금은비트코인...md</td></tr>
+<tr><td>&quot;Claude Code 스킬 만드는 법&quot;</td><td>Anthropic Claude Skill 제작 가이드...md</td></tr>
+</tbody></table>
+<hr>
 <h2>✅ 학습 체크리스트</h2>
-<p>| Phase | 스킬 | 핵심 학습 | 체크 |</p>
-<p>|-------|------|-----------|------|</p>
-<p>| 1 | <code>langgraph-project-setup</code> | langgraph.json 설정, 프로젝트 구조 표준 | ☐ |</p>
-<p>| 2 | (직접 구현) | 마크다운 로더, 청킹, ChromaDB 벡터 스토어 | ☐ |</p>
-<p>| 3 | <code>langgraph-state-management</code> | TypedDict State, add_messages 리듀서 | ☐ |</p>
-<p>| 4 | (직접 구현 + 스킬 참고) | 조건부 엣지, 관련성 그레이딩, 재검색 루프 | ☐ |</p>
-<p>| 5 | <code>langgraph-error-handling</code> | RetryPolicy, 폴백 패턴, 에러 분류 | ☐ |</p>
-<p>| 6 | <code>langgraph-testing-evaluation</code> | 노드 단위 테스트, 그래프 통합 테스트 | ☐ |</p>
-<p>---</p>
+<table><thead><tr><th>Phase</th><th>스킬</th><th>핵심 학습</th><th>체크</th></tr></thead><tbody>
+<tr><td>1</td><td><code>langgraph-project-setup</code></td><td>langgraph.json 설정, 프로젝트 구조 표준</td><td>☐</td></tr>
+<tr><td>2</td><td>(직접 구현)</td><td>마크다운 로더, 청킹, ChromaDB 벡터 스토어</td><td>☐</td></tr>
+<tr><td>3</td><td><code>langgraph-state-management</code></td><td>TypedDict State, add_messages 리듀서</td><td>☐</td></tr>
+<tr><td>4</td><td>(직접 구현 + 스킬 참고)</td><td>조건부 엣지, 관련성 그레이딩, 재검색 루프</td><td>☐</td></tr>
+<tr><td>5</td><td><code>langgraph-error-handling</code></td><td>RetryPolicy, 폴백 패턴, 에러 분류</td><td>☐</td></tr>
+<tr><td>6</td><td><code>langgraph-testing-evaluation</code></td><td>노드 단위 테스트, 그래프 통합 테스트</td><td>☐</td></tr>
+</tbody></table>
+<hr>
 <h2>🔜 다음 단계</h2>
-<p>| | 초급 (이번) | 중급 (다음) |</p>
-<p>|---|---|---|</p>
-<p>| 아키텍처 | 단일 RAG 체인 | Supervisor + 전문 에이전트 |</p>
-<p>| 새로운 스킬 | — | <code>langgraph-agent-patterns</code> |</p>
-<p>| 데이터 소스 | 로컬 마크다운 | + 웹 검색 + API |</p>
-<p>| 배포 | CLI | <code>langsmith-deployment</code> |</p>
-<p>---</p>
+<table><thead><tr><th></th><th>초급 (이번)</th><th>중급 (다음)</th></tr></thead><tbody>
+<tr><td>아키텍처</td><td>단일 RAG 체인</td><td>Supervisor + 전문 에이전트</td></tr>
+<tr><td>새로운 스킬</td><td>—</td><td><code>langgraph-agent-patterns</code></td></tr>
+<tr><td>데이터 소스</td><td>로컬 마크다운</td><td>+ 웹 검색 + API</td></tr>
+<tr><td>배포</td><td>CLI</td><td><code>langsmith-deployment</code></td></tr>
+</tbody></table>
+<hr>
 <p>#LangGraph #RAG #Tutorial #LangChain #AgentSkills #ChromaDB #OpenAI #Python</p><section class="sourcebox"><h2>Source Trace</h2><ul><li><code>News-Links/2026-02-16 News-Links QA Bot 만들기 - LangGraph 초급 가이드.md</code></li></ul></section><div class="footer">Generated from Obsidian Wikis/trading. Raw markdown files are not included in this repository; their reviewed body content is rendered into these public wiki pages.</div></main></body></html>
