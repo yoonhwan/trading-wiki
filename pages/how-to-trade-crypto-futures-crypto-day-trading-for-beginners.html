@@ -1,0 +1,81 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to Trade Crypto Futures (Crypto Day Trading for Beginners) · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-181559-KST">Jarvis Wiki / trading</a><h1>How to Trade Crypto Futures (Crypto Day Trading for Beginners)</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>How to Trade Crypto Futures (Crypto Day Trading for Beginners)</h1>
+<blockquote>Source candidate from <code>News-Links/2026-03-05 How to Trade Crypto Futures/README.md</code></blockquote>
+<h2>Source Content</h2>
+<h1>How to Trade Crypto Futures (Crypto Day Trading for Beginners)</h1>
+<blockquote>🎥 원본: <a href="https://www.youtube.com/watch?v=p21cKag32qA">https://www.youtube.com/watch?v=p21cKag32qA</a></blockquote>
+<h2>📋 요약</h2>
+<ul>
+<li>크립토 선물(퍼페추얼 선물) 거래의 A to Z — 마진·레버리지·포지션 진입/청산까지 총망라</li>
+<li>스팟 vs 선물의 핵심 차이: 선물은 자산을 소유하지 않고 **가격에만 베팅**하는 합성 계약</li>
+<li>USDT 마진(안정적)과 코인 마진(고변동성) 두 가지 방식 비교</li>
+<li>Bybit 기준 실전 UI 가이드 (다른 거래소도 동일 원리 적용)</li>
+</ul>
+<h2>🗂️ 아웃라인</h2>
+<p>1. **스팟 vs 선물 차이**</p>
+<p>2. **선물 계좌 입금 방법** (USDT/코인)</p>
+<p>3. **레버리지 개념** (2x, 5x, 10x)</p>
+<p>4. **USDT 마진 vs 코인 마진(Inverse)** 비교</p>
+<p>5. **헤지 트레이드** 개념</p>
+<p>6. **퍼페추얼 vs 만기 선물** + **펀딩비**</p>
+<p>7. **Cross vs Isolated 마진 모드**</p>
+<p>8. **포지션 진입** (롱/숏, 시장가)</p>
+<p>9. **TP/SL 설정** (진입 시 또는 사후 설정)</p>
+<p>10. **포지션 청산** (부분/전체)</p>
+<h2>💡 키포인트</h2>
+<h3>스팟 vs 선물</h3>
+<ul>
+<li>스팟: 자산을 실제로 사고 소유 → 출금 가능</li>
+<li>선물: 가격만 거래하는 합성 계약 → 자산 미소유, 롱/숏 자유롭게 가능</li>
+</ul>
+<h3>레버리지 &amp; 청산</h3>
+<p>| 레버리지 | 담보 비율 | 견딜 수 있는 하락 폭 |</p>
+<p>|----------|-----------|----------------------|</p>
+<p>| 2x | 50% | 50% |</p>
+<p>| 5x | 20% | 20% |</p>
+<p>| 10x | 10% | 10% |</p>
+<ul>
+<li>**핵심**: 레버리지 = 트레이드 사이즈를 키우는 것이 아니라, 자본을 효율적으로 활용하는 도구</li>
+<li>스탑로스를 설정하면 고레버리지도 리스크 증가 없이 사용 가능 (청산선 이전에 SL로 탈출)</li>
+</ul>
+<h3>USDT 마진 vs 코인 마진(Inverse)</h3>
+<p>| 구분 | USDT 마진 | 코인 마진(Inverse) |</p>
+<p>|------|-----------|-------------------|</p>
+<p>| 담보 | USDT/USDC (안정) | BTC/ETH 등 코인 (변동) |</p>
+<p>| 손익 | 달러로 정산 | 코인으로 정산 |</p>
+<p>| 변동성 | 상대적으로 낮음 | 매우 높음 |</p>
+<p>| 특이사항 | 일반 트레이딩 | 헤지 트레이딩 가능 |</p>
+<h3>헤지 트레이드</h3>
+<ul>
+<li>BTC 보유 중 하락 예상 → BTC를 담보로 BTC 숏 오픈</li>
+<li>트레이드 수익으로 BTC 하락 손실 일부 상쇄</li>
+<li>단점: 가격 상승 시 트레이드 손실로 업사이드 포기</li>
+<li>목적: 세금 이벤트 없이 포트폴리오 다운사이드 헤지</li>
+</ul>
+<h3>퍼페추얼 vs 만기 선물</h3>
+<ul>
+<li>**만기 선물**: 특정 날짜에 자동 청산, 펀딩비 없음</li>
+<li>**퍼페추얼(무기한)**: 만기 없음, 펀딩비 있음 (대부분 이것 사용)</li>
+</ul>
+<h3>펀딩비 (Funding Rate)</h3>
+<ul>
+<li>퍼페추얼 가격을 스팟 가격과 동기화하기 위한 메커니즘</li>
+<li>롱이 너무 많으면 → 롱이 숏에게 펀딩비 지불 (포지티브 펀딩)</li>
+<li>숏이 너무 많으면 → 숏이 롱에게 펀딩비 지불 (네거티브 펀딩)</li>
+<li>연간 약 10% 수준 (상황에 따라 변동), 포지션 장기 보유 시 반드시 고려</li>
+</ul>
+<h3>Cross vs Isolated 마진</h3>
+<ul>
+<li>**Isolated**: 포지션별 담보 분리 → 한 포지션 청산이 다른 포지션에 영향 없음</li>
+<li>**Cross**: 계좌 전체 자산으로 모든 포지션 담보 → 유연하지만 연쇄 청산 위험</li>
+</ul>
+<h3>TP/SL 설정</h3>
+<ul>
+<li>진입 시 또는 진입 후 사후 설정 모두 가능</li>
+<li>TP/SL 주문은 원 포지션에 연동 → 포지션 청산 시 자동 취소</li>
+</ul>
+<h2>📝 전사본 (핵심 발췌)</h2>
+<blockquote>&quot;Higher leverage doesn&#x27;t necessarily mean more risk in your position if you&#x27;re using stop losses.&quot;</blockquote>
+<blockquote>&quot;The effective leverage that you have is the most important thing.&quot;</blockquote>
+<blockquote>&quot;With cross margin, if one position really goes south, it can drag other positions as well.&quot;</blockquote>
+<p>---</p>
+<p>*채널: #threads-web-link | 저장: 자비스*</p><section class="sourcebox"><h2>Source Trace</h2><ul><li><code>News-Links/2026-03-05 How to Trade Crypto Futures/README.md</code></li></ul></section><div class="footer">Generated from Obsidian Wikis/trading. Raw markdown files are not included in this repository; their reviewed body content is rendered into these public wiki pages.</div></main></body></html>

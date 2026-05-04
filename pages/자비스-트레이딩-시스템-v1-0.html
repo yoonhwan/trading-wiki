@@ -1,0 +1,144 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>자비스 트레이딩 시스템 v1.0 · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-181559-KST">Jarvis Wiki / trading</a><h1>자비스 트레이딩 시스템 v1.0</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>자비스 트레이딩 시스템 v1.0</h1>
+<blockquote>Source candidate from <code>News-Links/2026-03-05 OpenClaw 자동매매봇 5단계 가이드.md</code></blockquote>
+<h2>Source Content</h2>
+<h1>자비스 트레이딩 시스템 v1.0</h1>
+<blockquote>**에이전트 + 인간의 반자동 학습형 크립토 트레이딩 시스템**</blockquote>
+<blockquote>Created: 2026-03-05 | Channel: #trading-auto</blockquote>
+<p>---</p>
+<h2>🎯 시스템 개요</h2>
+<p>**목표**: 자비스와 yoonhwan 오빠가 함께 성장하는 트레이딩 시스템</p>
+<ul>
+<li>에이전트가 조건·아이디어를 제안 → 오빠가 동의하면 D.Terminal에서 실행</li>
+<li>매 거래마다 기록 → 패턴 분석 → rules.md 진화 → 더 나은 판단</li>
+<li>시드: 10만원 (공격형, 검증 후 증가)</li>
+</ul>
+<p>---</p>
+<h2>🛠️ 기술 스택</h2>
+<p>| 항목 | 도구 |</p>
+<p>|------|------|</p>
+<p>| 실행 터미널 | D.Terminal (바이낸스 선물 연동) |</p>
+<p>| 거래소 | 바이낸스 (BTCUSDT 선물/현물) |</p>
+<p>| 명령 형식 | <code>market buy BTCUSDT 0.5 sl=95000 tp=105000</code> |</p>
+<p>| 알림 채널 | #trading-auto (Slack) |</p>
+<p>| 거래 기록 | <code>data/trades.jsonl</code> (append-only) |</p>
+<p>| 저널 | <code>data/journal/YYYY-MM-DD-###.md</code> |</p>
+<p>| 규칙집 | <code>rules.md</code> (거래마다 진화) |</p>
+<p>| 전략 문서 | <code>docs/strategy/</code> |</p>
+<p>---</p>
+<h2>🤖 에이전트 역할 (3단계)</h2>
+<h3>Before Trade — 진입 전 분석</h3>
+<p>1. 현재 시장 상황 요약 (추세/박스, 변동성, 주요 지지·저항)</p>
+<p>2. 행동 제안: <code>진입 / 추가진입 / 관망 / 청산</code> 중 1개 + 이유</p>
+<p>3. 진입 추천 시 D.Terminal 명령까지 제안:</p>
+<pre><code>   market buy BTCUSDT 0.5 sl=95000 tp=105000</code></pre>
+<p>**응답 형식:**</p>
+<pre><code>[행동] 관망 (또는 진입/청산)
+[이유] BTC 일봉 기준 98,500 저항대 테스트 중. 돌파 확인 전 진입 자제.
+[다음 체크] 98,500 돌파 + 거래량 급증 시 진입 재검토.</code></pre>
+<h3>After Trade — 거래 후 분석</h3>
+<p>1. PnL, 최대 드로다운, 계획 대비 이탈 여부</p>
+<p>2. 배운 점 1~3가지 제안</p>
+<p>3. 저널 파일 저장용 텍스트 생성 (바로 붙여넣기 가능)</p>
+<h3>Periodic — 주기적 성과 분석 (1일/1주)</h3>
+<p>1. 누적 기록 분석 (수익/손실 조건, SL/TP 적절성)</p>
+<p>2. 시간대·변동성·시장 구조별 성과 차이 요약</p>
+<p>3. 다음 주 바꿔볼 규칙 1~3개 제안 → rules.md 업데이트</p>
+<p>---</p>
+<h2>📊 자기 개선 매트릭스 (Larry 방식 트레이딩 적용)</h2>
+<p>| 결과 | 계획 일치? | 진단 | 액션 |</p>
+<p>|------|-----------|------|------|</p>
+<p>| 수익 | ✅ 일치 | 패턴 정형화 | rules.md에 조건 추가 |</p>
+<p>| 수익 | ❌ 이탈 | 우연 경고 | 재현 불가 패턴, 규칙 미적용 |</p>
+<p>| 손실 | ✅ 일치 | 전략 문제 | 해당 조건 재검토/제거 |</p>
+<p>| 손실 | ❌ 이탈 | 규율 위반 | 손절 규칙 강화, 규율 체크 |</p>
+<blockquote>**핵심**: 실수할 때마다 rules.md에 교훈 추가 → 500줄짜리 교훈집으로 성장 (Larry가 그랬듯)</blockquote>
+<p>---</p>
+<h2>📁 거래 기록 구조</h2>
+<h3>trades.jsonl (append-only)</h3>
+<pre><code>{
+  &quot;id&quot;: &quot;2026-03-05-001&quot;,
+  &quot;timestamp&quot;: &quot;2026-03-05T12:30:00+09:00&quot;,
+  &quot;symbol&quot;: &quot;BTCUSDT&quot;,
+  &quot;direction&quot;: &quot;LONG&quot;,
+  &quot;entry_price&quot;: 97500,
+  &quot;quantity&quot;: 0.001,
+  &quot;sl&quot;: 95000,
+  &quot;tp&quot;: 105000,
+  &quot;exit_price&quot;: null,
+  &quot;pnl&quot;: null,
+  &quot;max_favorable&quot;: null,
+  &quot;max_adverse&quot;: null,
+  &quot;pre_context&quot;: &quot;RSI 32, 주요 지지 97k 부근 반등 시도&quot;,
+  &quot;command&quot;: &quot;market buy BTCUSDT 0.001 sl=95000 tp=105000&quot;,
+  &quot;status&quot;: &quot;open&quot;
+}</code></pre>
+<h3>journal/YYYY-MM-DD-###.md</h3>
+<pre><code>---
+id: 2026-03-05-001
+symbol: BTCUSDT
+direction: LONG
+entry: 97500 | sl: 95000 | tp: 105000
+exit: - | pnl: -
+---
+
+## 진입 근거
+- RSI 1h 기준 32 (과매도 구간)
+- 97,000 지지 레벨 반등 시도 확인
+- 거래량 소폭 증가
+
+## 진입 명령
+market buy BTCUSDT 0.001 sl=95000 tp=105000
+
+## 결과
+(거래 종료 후 작성)
+
+## 배운 점
+(거래 종료 후 작성)</code></pre>
+<p>---</p>
+<h2>🧠 메모리 &amp; 장기기억 시스템 (Oc-Memory 기반)</h2>
+<ul>
+<li><code>data/trades.jsonl</code> → Oc-Memory 감시 폴더 → 거래 기록 자동 장기기억화 (토큰 90% 절감)</li>
+<li><code>docs/strategy/</code> → 수집 전략 문서 → 자비스가 분석 시 자동 참조</li>
+<li><code>rules.md</code> → 매 거래 후 업데이트 → 메모리 시스템으로 영구 학습</li>
+</ul>
+<p>**자동 연동:**</p>
+<ul>
+<li><code>#threads-web-link</code>에 트레이딩 링크 공유 → <code>docs/strategy/</code> 자동 저장 (중복)</li>
+<li><code>#trading-auto</code>에서 거래 명령/분석 요청</li>
+</ul>
+<p>---</p>
+<h2>📏 초기 리스크 관리 규칙 (v1.0)</h2>
+<p>1. **최대 손실**: 전체 시드 10만원의 5% = 5,000원/거래</p>
+<p>2. **SL 필수**: 모든 진입 시 SL 동시 설정 (D.Terminal <code>sl=</code> 파라미터)</p>
+<p>3. **레버리지**: 초기 1~3x (검증 전까지 제한)</p>
+<p>4. **거래 간격**: 이전 거래 결과 분석 후 다음 진입 (충동 방지)</p>
+<p>5. **알림 시간**: 24/7 (코인 특성상 전 시간대 알림)</p>
+<p>---</p>
+<h2>🔄 시스템 진화 규칙 (Compact 재정리)</h2>
+<ul>
+<li>**평가 주기**: 1주일마다 rules.md 검토</li>
+<li>**규칙 추가**: 같은 실수 2회 이상 → rules.md에 영구 규칙 추가</li>
+<li>**규칙 제거**: 3회 연속 상충 → 제거 검토</li>
+<li>**문서 compact**: 규칙이 30개 초과 시 → 핵심 원칙으로 재정리</li>
+</ul>
+<p>---</p>
+<h2>📌 D.Terminal CLI 참고</h2>
+<blockquote>D.Terminal 설치 후 <code>help</code> 명령으로 전체 명령어 확인 예정</blockquote>
+<p>**알려진 명령 형식:**</p>
+<pre><code>market buy BTCUSDT 0.5 sl=95000 tp=105000    # 시장가 롱
+market sell BTCUSDT 0.5 sl=105000 tp=95000   # 시장가 숏
+limit buy BTCUSDT 1.0 97000                  # 지정가
+# 포지션 관리, 레버리지 조정 등 → 설치 후 추가 예정</code></pre>
+<p>---</p>
+<h2>🗂️ 프로젝트 폴더 구조</h2>
+<pre><code>~/Project/Agent/Trading/
+├── STRATEGY.md        ← 이 파일 (시스템 가이드)
+├── rules.md           ← 진화하는 규칙집
+├── data/
+│   ├── trades.jsonl   ← 거래 기록 (append-only)
+│   └── journal/       ← 거래별 마크다운 저널
+└── docs/
+    ├── strategy/      ← 외부 수집 전략 문서
+    ├── risk/          ← 리스크 관리 문서
+    ├── mental/        ← 멘탈 관리 문서
+    └── tools/         ← D.Terminal 등 도구 가이드</code></pre><section class="sourcebox"><h2>Source Trace</h2><ul><li><code>News-Links/2026-03-05 OpenClaw 자동매매봇 5단계 가이드.md</code></li></ul></section><div class="footer">Generated from Obsidian Wikis/trading. Raw markdown files are not included in this repository; their reviewed body content is rendered into these public wiki pages.</div></main></body></html>

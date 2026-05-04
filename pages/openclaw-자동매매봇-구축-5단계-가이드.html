@@ -1,0 +1,45 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenClaw 자동매매봇 구축 5단계 가이드 · Jarvis Wiki</title><link rel="stylesheet" href="../assets/style.css"></head><body><main class="wrap"><header><a class="badge" href="../index.html?v=20260504-181559-KST">Jarvis Wiki / trading</a><h1>OpenClaw 자동매매봇 구축 5단계 가이드</h1><p class="muted">Public GitHub Pages export · full wiki body rendered · raw files excluded</p></header><h1>OpenClaw 자동매매봇 구축 5단계 가이드</h1>
+<blockquote>Source candidate from <code>News-Links/2026-02-20 OpenClaw 자동매매봇 구축 5단계 가이드.md</code></blockquote>
+<h2>Source Content</h2>
+<h1>OpenClaw 자동매매봇 구축 5단계 가이드</h1>
+<blockquote>초보자가 OpenClaw를 이용해 자동 매매 봇(Auto Trading Bot)을 구축하고 운영하는 과정을 5단계로 정리</blockquote>
+<h2>1단계: 24시간 작동하는 &#x27;작업실&#x27; 마련하기</h2>
+<p>OpenClaw는 내 대신 24시간 시장을 감시해야 하므로, 컴퓨터가 항상 켜져 있어야 합니다.</p>
+<ul>
+<li>**추천 장소**: 개인 PC보다는 **VPS(가상 사설 서버)**나 **맥 미니(Mac Mini)**를 권장. 개인 PC는 절전 모드나 인터넷 끊김으로 인해 봇이 멈출 수 있음.</li>
+<li>**격리된 환경**: 보안을 위해 실제 내가 쓰는 데이터가 들어있는 PC가 아닌, 아무것도 없는 **가상 머신(VM)**에 설치하는 것이 가장 안전.</li>
+</ul>
+<h2>2단계: OpenClaw 설치 및 AI 연결하기</h2>
+<p>OpenClaw는 &#x27;몸체&#x27;이고, 이를 움직일 &#x27;두뇌(AI 모델)&#x27;가 필요합니다.</p>
+<ul>
+<li>**기술 요구사항**: Node.js 버전 22 이상 필요. **Docker**를 이용하면 복잡한 과정 없이 쉽게 설치 가능.</li>
+<li>**AI 두뇌 연결**: Anthropic의 Claude나 OpenAI의 API 키를 OpenClaw에 입력하여 연결. AI 사용량에 따른 **비용 발생** 주의.</li>
+</ul>
+<h2>3단계: 리모컨(메신저) 연결하기</h2>
+<p>밖에서도 봇에게 명령을 내릴 수 있도록 메신저를 연결합니다.</p>
+<ul>
+<li>**텔레그램(Telegram) 추천**: 가장 많이 쓰이는 방식. OpenClaw와 연결하면 마치 친구와 채팅하듯 &quot;지금 주가 어때?&quot;, &quot;이 전략으로 매매 시작해&quot;라고 명령 가능.</li>
+<li>**권한 설정**: 보안을 위해 처음에는 AI가 내 파일을 마음대로 삭제하지 못하도록 **&#x27;읽기 전용&#x27; 권한** 위주로 설정 권장.</li>
+</ul>
+<h2>4단계: 매매 전략 가르치기 (스킬 설치)</h2>
+<p>OpenClaw에 &#x27;매매하는 방법&#x27;을 알려주는 단계입니다.</p>
+<ul>
+<li>**스킬(Skill) 설치**: ClawHub나 GitHub에서 다른 사람들이 만든 트레이딩 스킬을 가져와 설치 가능.</li>
+<li>**전략 대화**: AI에게 구체적으로 지시. 예: &quot;솔라나(Solana)에서 유동성이 100만 달러 이상인 코인만 거래하고, 500달러까지만 써줘&quot;</li>
+<li>**백테스팅(Backtesting)**: 실제 돈을 쓰기 전에 &quot;이 전략으로 과거에 돌렸으면 얼마 벌었을까?&quot; 확인.</li>
+</ul>
+<h2>5단계: 실행 및 모니터링</h2>
+<p>모든 준비가 끝났다면 봇을 가동합니다.</p>
+<ul>
+<li>**지갑 생성 및 펀딩**: AI가 직접 지갑을 만들게 한 뒤, 거래에 사용할 **소액의 금액만** 입금.</li>
+<li>**지속적 실행(Daemon)**: 봇이 배경에서 계속 돌아가도록 설정하고, 10초마다 시장을 체크.</li>
+<li>**학습 및 개선**: 봇이 거래할 때마다 기록(trading.md)을 남기게 하여, 무엇을 배웠는지 주기적으로 대화하며 전략을 수정.</li>
+</ul>
+<p>---</p>
+<h2>📝 메모</h2>
+<ul>
+<li>작성자 <code>@gbanggggggg</code>의 Threads 게시물 (스레드 형태 5개 연속 포스트)</li>
+<li>좋아요 3, 댓글 5, 리포스트 2, 공유 4 (메인 포스트 기준)</li>
+<li>OpenClaw를 활용한 **크립토 자동매매** 입문 가이드 성격</li>
+<li>⚠️ 실제 트레이딩은 리스크가 높으므로 소액 테스트 필수</li>
+</ul><section class="sourcebox"><h2>Source Trace</h2><ul><li><code>News-Links/2026-02-20 OpenClaw 자동매매봇 구축 5단계 가이드.md</code></li></ul></section><div class="footer">Generated from Obsidian Wikis/trading. Raw markdown files are not included in this repository; their reviewed body content is rendered into these public wiki pages.</div></main></body></html>
